@@ -1,0 +1,238 @@
+---------------------------------------------------
+-- AADL2.1
+-- TASTE type interfaceview
+-- 
+-- generated code: do not edit
+---------------------------------------------------
+
+PACKAGE interfaceview::IV::marker_pose_producer
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_clock
+END PI_clock;
+
+SUBPROGRAM IMPLEMENTATION PI_clock.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_clock.others;
+
+SUBPROGRAM RI_markerPose
+FEATURES
+  pose : IN PARAMETER DataView::Base_samples_RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+END RI_markerPose;
+
+SUBPROGRAM IMPLEMENTATION RI_markerPose.others
+END RI_markerPose.others;
+
+SYSTEM marker_pose_producer
+FEATURES
+  PI_clock : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::marker_pose_producer::PI_clock.others {
+    Taste::coordinates => "36786 77266";
+    Taste::RCMoperationKind => cyclic;
+    Taste::RCMperiod => 2000 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "clock";
+  };
+  RI_markerPose : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::marker_pose_producer::RI_markerPose.others {
+    Taste::coordinates => "71904 77897";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "markerPose";
+    Taste::labelInheritance => "false";
+  };
+PROPERTIES
+  Source_Language => (CPP);
+  Taste::Active_Interfaces => any;
+END marker_pose_producer;
+
+SYSTEM IMPLEMENTATION marker_pose_producer.others
+END marker_pose_producer.others;
+
+END interfaceview::IV::marker_pose_producer;
+
+PACKAGE interfaceview::IV::rbs_printer
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_print_rbs
+FEATURES
+  pose : IN PARAMETER DataView::Base_samples_RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_print_rbs;
+
+SUBPROGRAM IMPLEMENTATION PI_print_rbs.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_print_rbs.others;
+
+SYSTEM rbs_printer
+FEATURES
+  PI_print_rbs : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::rbs_printer::PI_print_rbs.others {
+    Taste::coordinates => "159446 36929";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "print_rbs";
+  };
+PROPERTIES
+  Source_Language => (CPP);
+  Taste::Active_Interfaces => any;
+END rbs_printer;
+
+SYSTEM IMPLEMENTATION rbs_printer.others
+END rbs_printer.others;
+
+END interfaceview::IV::rbs_printer;
+
+PACKAGE interfaceview::IV::robot_pose_producer
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_clock
+END PI_clock;
+
+SUBPROGRAM IMPLEMENTATION PI_clock.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 100 ms;
+END PI_clock.others;
+
+SUBPROGRAM RI_robotPose
+FEATURES
+  sample : IN PARAMETER DataView::Base_samples_RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+END RI_robotPose;
+
+SUBPROGRAM IMPLEMENTATION RI_robotPose.others
+END RI_robotPose.others;
+
+SYSTEM robot_pose_producer
+FEATURES
+  PI_clock : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::robot_pose_producer::PI_clock.others {
+    Taste::coordinates => "36828 21968";
+    Taste::RCMoperationKind => cyclic;
+    Taste::RCMperiod => 1000 ms;
+    Taste::Deadline => 100 ms;
+    Taste::InterfaceName => "clock";
+  };
+  RI_robotPose : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::robot_pose_producer::RI_robotPose.others {
+    Taste::coordinates => "71158 21969";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "robotPose";
+    Taste::labelInheritance => "false";
+  };
+PROPERTIES
+  Source_Language => (CPP);
+  Taste::Active_Interfaces => any;
+END robot_pose_producer;
+
+SYSTEM IMPLEMENTATION robot_pose_producer.others
+END robot_pose_producer.others;
+
+END interfaceview::IV::robot_pose_producer;
+
+PACKAGE interfaceview::IV::rbs_output
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_in_rbs
+FEATURES
+  pose : IN PARAMETER DataView::Base_samples_RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_in_rbs;
+
+SUBPROGRAM IMPLEMENTATION PI_in_rbs.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_in_rbs.others;
+
+SUBPROGRAM RI_out_rbs
+FEATURES
+  pose : IN PARAMETER DataView::Base_samples_RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+END RI_out_rbs;
+
+SUBPROGRAM IMPLEMENTATION RI_out_rbs.others
+END RI_out_rbs.others;
+
+SYSTEM rbs_output
+FEATURES
+  PI_in_rbs : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::rbs_output::PI_in_rbs.others {
+    Taste::coordinates => "159157 82115";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "in_rbs";
+  };
+  RI_out_rbs : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::rbs_output::RI_out_rbs.others {
+    Taste::coordinates => "206392 96276";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "out_rbs";
+    Taste::labelInheritance => "false";
+  };
+PROPERTIES
+  Source_Language => (CPP);
+  Taste::Active_Interfaces => any;
+END rbs_output;
+
+SYSTEM IMPLEMENTATION rbs_output.others
+END rbs_output.others;
+
+END interfaceview::IV::rbs_output;
+
+PACKAGE interfaceview::IV
+PUBLIC
+
+WITH interfaceview::IV::marker_pose_producer;
+WITH interfaceview::IV::rbs_printer;
+WITH interfaceview::IV::robot_pose_producer;
+WITH interfaceview::IV::rbs_output;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM interfaceview
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("tools-debugcomponents_dv.aadl");
+END interfaceview;
+
+SYSTEM IMPLEMENTATION interfaceview.others
+SUBCOMPONENTS
+  marker_pose_producer : SYSTEM interfaceview::IV::marker_pose_producer::marker_pose_producer.others {
+    Taste::coordinates => "36786 70022 71904 109392";
+  };
+  rbs_printer : SYSTEM interfaceview::IV::rbs_printer::rbs_printer.others {
+    Taste::coordinates => "159446 17173 206681 56434";
+  };
+  robot_pose_producer : SYSTEM interfaceview::IV::robot_pose_producer::robot_pose_producer.others {
+    Taste::coordinates => "36828 18819 71158 57873";
+  };
+  rbs_output : SYSTEM interfaceview::IV::rbs_output::rbs_output.others {
+    Taste::coordinates => "159157 69876 206392 109137";
+  };
+END interfaceview.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("tools-debugcomponents_dv.aadl");
+  Taste::coordinates => "0 0 297000 210000";
+  Taste::version => "2.0";
+END interfaceview::IV;
+
