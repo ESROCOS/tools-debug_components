@@ -1,6 +1,10 @@
 /* User code: This file will not be overwritten by TASTE. */
 
 #include "marker_pose_producer.h"
+#include "base_support/Base-samples-RigidBodyStateConvert.hpp"
+#include "base_support/OpaqueConversion.hpp"
+#include <Eigen/Core>
+#include <iostream>
 
 void marker_pose_producer_startup()
 {

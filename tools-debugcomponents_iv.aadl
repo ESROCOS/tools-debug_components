@@ -12,6 +12,8 @@ WITH Taste;
 WITH DataView;
 WITH TASTE_IV_Properties;
 SUBPROGRAM PI_clock
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
 END PI_clock;
 
 SUBPROGRAM IMPLEMENTATION PI_clock.others
@@ -32,14 +34,14 @@ END RI_markerPose.others;
 SYSTEM marker_pose_producer
 FEATURES
   PI_clock : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::marker_pose_producer::PI_clock.others {
-    Taste::coordinates => "36786 77266";
+    Taste::coordinates => "36420 77266";
     Taste::RCMoperationKind => cyclic;
     Taste::RCMperiod => 2000 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "clock";
   };
   RI_markerPose : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::marker_pose_producer::RI_markerPose.others {
-    Taste::coordinates => "71904 77897";
+    Taste::coordinates => "71538 77897";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "markerPose";
     Taste::labelInheritance => "false";
@@ -50,6 +52,10 @@ PROPERTIES
 END marker_pose_producer;
 
 SYSTEM IMPLEMENTATION marker_pose_producer.others
+SUBCOMPONENTS
+  compilerOption : DATA DataView::Taste_directive {
+    Taste::FS_Default_Value => "compiler-option:""-DOROCOS_TARGET=gnulinux""";
+  };
 END marker_pose_producer.others;
 
 END interfaceview::IV::marker_pose_producer;
@@ -89,6 +95,13 @@ PROPERTIES
 END rbs_printer;
 
 SYSTEM IMPLEMENTATION rbs_printer.others
+SUBCOMPONENTS
+  compilerOption : DATA DataView::Taste_directive {
+    Taste::FS_Default_Value => "compiler-option:""-DOROCOS_TARGET=gnulinux""";
+  };
+  name : DATA DataView::T_String {
+    Taste::FS_Default_Value => """rbs_printer""";
+  };
 END rbs_printer.others;
 
 END interfaceview::IV::rbs_printer;
@@ -100,6 +113,8 @@ WITH Taste;
 WITH DataView;
 WITH TASTE_IV_Properties;
 SUBPROGRAM PI_clock
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
 END PI_clock;
 
 SUBPROGRAM IMPLEMENTATION PI_clock.others
@@ -138,6 +153,10 @@ PROPERTIES
 END robot_pose_producer;
 
 SYSTEM IMPLEMENTATION robot_pose_producer.others
+SUBCOMPONENTS
+  compilerOption : DATA DataView::Taste_directive {
+    Taste::FS_Default_Value => "compiler-option:""-DOROCOS_TARGET=gnulinux""";
+  };
 END robot_pose_producer.others;
 
 END interfaceview::IV::robot_pose_producer;
@@ -175,14 +194,14 @@ END RI_out_rbs.others;
 SYSTEM rbs_output
 FEATURES
   PI_in_rbs : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::rbs_output::PI_in_rbs.others {
-    Taste::coordinates => "159157 82115";
+    Taste::coordinates => "157328 83213";
     Taste::RCMoperationKind => sporadic;
     Taste::RCMperiod => 0 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "in_rbs";
   };
   RI_out_rbs : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::rbs_output::RI_out_rbs.others {
-    Taste::coordinates => "206392 96276";
+    Taste::coordinates => "204563 97374";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "out_rbs";
     Taste::labelInheritance => "false";
@@ -193,6 +212,13 @@ PROPERTIES
 END rbs_output;
 
 SYSTEM IMPLEMENTATION rbs_output.others
+SUBCOMPONENTS
+  compilerOption : DATA DataView::Taste_directive {
+    Taste::FS_Default_Value => "compiler-option:""-DOROCOS_TARGET=gnulinux""";
+  };
+  name : DATA DataView::T_String {
+    Taste::FS_Default_Value => """rbs_output""";
+  };
 END rbs_output.others;
 
 END interfaceview::IV::rbs_output;
@@ -216,7 +242,7 @@ END interfaceview;
 SYSTEM IMPLEMENTATION interfaceview.others
 SUBCOMPONENTS
   marker_pose_producer : SYSTEM interfaceview::IV::marker_pose_producer::marker_pose_producer.others {
-    Taste::coordinates => "36786 70022 71904 109392";
+    Taste::coordinates => "36420 70022 71538 109392";
   };
   rbs_printer : SYSTEM interfaceview::IV::rbs_printer::rbs_printer.others {
     Taste::coordinates => "159446 17173 206681 56434";
@@ -225,7 +251,7 @@ SUBCOMPONENTS
     Taste::coordinates => "36828 18819 71158 57873";
   };
   rbs_output : SYSTEM interfaceview::IV::rbs_output::rbs_output.others {
-    Taste::coordinates => "159157 69876 206392 109137";
+    Taste::coordinates => "157328 70974 204563 110235";
   };
 END interfaceview.others;
 
